@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+
+import re
+import requests
+from bs4 import BeautifulSoup
+import urllib
+import base64
+import os
+import sys
+
+def soupify(url):
+    response = requests.get(url)
+    html = response.content
+
+    return BeautifulSoup(html, "html.parser")
+
+def fetch(url):
+    return requests.get(url).content
+
+def base64ify(url):
+    return base64.b64encode(fetch(url))
+
+def write_file(file, content):
+    fh = open(file, "wb")
+    fh.write(content)
+    fh.close()
+
+class BlueApron:
+    regex = "(http:|ftp:|https:)?blueapron.com*"
+
+    def __init__(self, url):
+        self.url = url
+
+    def parse(self):
+        self.soup = soupify(self.url)
+
+        title_html = self.soup.find(class_ = 'ba-recipe-title')
+        self.title = title_html.find("h1").contents[0].strip() + " " + title_html.find("h2").text.strip()
+
+        image_html = self.soup.find(class_ = "ba-hero-image__hldr")
+        self.image = fetch(image_html.find("img")['src'])
+
+        self.pdf = fetch(self.soup.find(class_="pdf-download-link")["href"])
+
+        self.info = {}
+        info_html = self.soup.find(class_="recipe-main-list")
+        for info in info_html.find_all(class_="ba-info-list__item"):
+            [x.extract() for x in info.findAll('svg')]
+            self.info[info.find(class_="ba-info-list__item-name").text.strip()] = " ".join(info.find(class_="ba-info-list__item-value").text.split())
+
+        ingredients_html = self.soup.select('.recipe-ingredients .ba-info-list')[0]
+        self.ingredients = []
+
+        for ingredient in ingredients_html.find_all(itemprop="ingredients"):
+            # name = ingredient.children[0].content[-1].strip()
+            # amount = ingredient.find("span").text.strip()
+            self.ingredients.append(ingredient.text.strip().replace("\n", " "))
+
+        instructions_html = self.soup.select('.recipe-instructions')[0]
+        self.instructions = []
+
+        for instruction in instructions_html.find_all(class_="col-md-6"):
+            self.instructions.append(instruction.text.strip().replace("\n", " ").replace("    ", " ").replace("  ", ". "))
+
+        return self
+
+        # print(ingredients_html)
+
+##################################################################################################################################
+if len(sys.argv) < 2:
+    print("Please pass in a url")
+    exit(0)
+
+url = sys.argv[1]
+
+parsers = [BlueApron]
+
+for parser in parsers:
+
+    if re.search(parser.regex, url) == None: continue
+
+    print("Parsing using " + parser.__name__)
+
+    recipe = parser(url).parse()
+
+    import subprocess
+
+    info_string = ""
+
+    for key, value in recipe.info.items():
+        info_string += "**{0}**: {1}\n".format(key, value)
+
+    info_string = info_string.strip()
+
+    note_text = """# {0}
+#food/recipes
+---
+
+{1}
+
+## Ingredients
+{2}
+
+## Directions
+{3}
+
+[{0}]({4})""".format(recipe.title, info_string, "\n".join(recipe.ingredients), "\n".join(recipe.instructions), url)
+
+    bear_url = "bear://x-callback-url/create?text={0}".format(urllib.request.pathname2url(note_text))
+
+    print("creating bear note")
+    subprocess.Popen(['open', bear_url])
+
+    component_location = os.path.expanduser("~/Downloads/recipe_components/")
+
+    if not os.path.exists(component_location): os.makedirs(component_location)
+
+    print("writing components")
+    if recipe.image != None: write_file(component_location + recipe.title + ".jpg", recipe.image)
+    if recipe.pdf != None: write_file(component_location + recipe.title + ".pdf", recipe.pdf)
+
+    subprocess.Popen(['open', component_location])
+
+    exit(0)
+
+print ("Unable to parse provided url")
