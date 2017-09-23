@@ -25,6 +25,9 @@ def write_file(file, content):
     fh.write(content)
     fh.close()
 
+def space_cleaner(s):
+    return " ".join(s.split())
+
 class BlueApron:
     regex = "(http:|ftp:|https:)?blueapron.com*"
 
@@ -46,7 +49,7 @@ class BlueApron:
         info_html = self.soup.find(class_="recipe-main-list")
         for info in info_html.find_all(class_="ba-info-list__item"):
             [x.extract() for x in info.findAll('svg')]
-            self.info[info.find(class_="ba-info-list__item-name").text.strip()] = " ".join(info.find(class_="ba-info-list__item-value").text.split())
+            self.info[info.find(class_="ba-info-list__item-name").text.strip()] = space_cleaner(info.find(class_="ba-info-list__item-value").text)
 
         ingredients_html = self.soup.select('.recipe-ingredients .ba-info-list')[0]
         self.ingredients = []
@@ -64,16 +67,65 @@ class BlueApron:
 
         return self
 
-        # print(ingredients_html)
+
+class AllRecipes:
+    regex = "(http:|https:)?allrecipes.com/recipe/*"
+
+    def __init__(self, url):
+        self.url = url
+
+    def parse(self):
+        self.soup = soupify(self.url)
+
+        title_html = self.soup.find(class_ = 'recipe-summary__h1')
+        self.title = title_html.text.strip()
+
+        image_html = self.soup.find(class_ = "hero-photo__wrap")
+        self.image = fetch(image_html.find("img")['src'])
+
+        self.pdf = None
+
+        self.info = {}
+        info_html = self.soup.find(class_="recipe-ingredients__header__toggles")
+
+        self.info["Servings"] = "FILLL ME IN " + info_html.find(class_="servings-count").text.strip()
+        self.info["Nutrition"] = space_cleaner(info_html.find(class_="calorie-count").text.strip())
+
+        time_info_html = self.soup.find(class_="prepTime")
+        for info in time_info_html.find_all(class_="prepTime__item"):
+            if info.find("time") is None: continue
+            self.info[info.find("p").text.strip()] = " ".join(info.find("time").text.split())
+
+        video_html = self.soup.find(id="btn_RecipeVideo")
+        if video_html != None:
+            self.video = urllib.parse.urljoin("http://allrecipes.com", video_html["href"])
+
+        self.ingredients = []
+
+        for ingredients_class in [".list-ingredients-1", ".list-ingredients-2"]:
+            ingredients_html = self.soup.select(ingredients_class)[0]
+
+            for ingredient in ingredients_html.find_all(itemprop="ingredients"):
+                self.ingredients.append(ingredient.text.strip().replace("\n", " "))
+
+        instructions_html = self.soup.select('.recipe-directions__list')[0]
+        self.instructions = []
+        step = 1
+
+        for instruction in instructions_html.find_all(class_="step"):
+            self.instructions.append(str(step) + ". " + instruction.text.strip())
+            step += 1
+
+        return self
 
 ##################################################################################################################################
+parsers = [BlueApron, AllRecipes]
+
 if len(sys.argv) < 2:
     print("Please pass in a url")
     exit(0)
 
 url = sys.argv[1]
-
-parsers = [BlueApron]
 
 for parser in parsers:
 
@@ -105,6 +157,8 @@ for parser in parsers:
 {3}
 
 [{0}]({4})""".format(recipe.title, info_string, "\n".join(recipe.ingredients), "\n".join(recipe.instructions), url)
+
+    if recipe.video != None: note_text += "\n[{0} video]({1})".format(recipe.title, recipe.video)
 
     bear_url = "bear://x-callback-url/create?text={0}".format(urllib.request.pathname2url(note_text))
 
