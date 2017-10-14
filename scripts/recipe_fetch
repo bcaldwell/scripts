@@ -158,7 +158,7 @@ for parser in parsers:
 
 [{0}]({4})""".format(recipe.title, info_string, "\n".join(recipe.ingredients), "\n".join(recipe.instructions), url)
 
-    if recipe.video != None: note_text += "\n[{0} video]({1})".format(recipe.title, recipe.video)
+    if hasattr(recipe, "video"): note_text += "\n[{0} video]({1})".format(recipe.title, recipe.video)
 
     bear_url = "bear://x-callback-url/create?text={0}".format(urllib.request.pathname2url(note_text))
 
@@ -170,8 +170,8 @@ for parser in parsers:
     if not os.path.exists(component_location): os.makedirs(component_location)
 
     print("writing components")
-    if recipe.image != None: write_file(component_location + recipe.title + ".jpg", recipe.image)
-    if recipe.pdf != None: write_file(component_location + recipe.title + ".pdf", recipe.pdf)
+    if hasattr(recipe, "image"): write_file(component_location + recipe.title + ".jpg", recipe.image)
+    if hasattr(recipe, "pdf"): write_file(component_location + recipe.title + ".pdf", recipe.pdf)
 
     subprocess.Popen(['open', component_location])
 
