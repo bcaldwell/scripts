@@ -76,6 +76,24 @@ formation = [1, 2, 2, 4, 2]
 # datetime.datetime.strptime('2017-08-11T00:00:00Z', '%Y-%m-%dT%H:%M:%SZ').date()
 
 
+def check_score(team):
+    if team.verify():
+        score_1 = team.calculate_score(2017, 12, 18)
+        if score_1 != 17:
+            return False
+        score_2 = team.calculate_score(2017, 12, 25)
+        if score_2 != 34:
+            return False
+        score_3 = team.calculate_score(2018, 1, 1)
+        if score_3 != 14:
+            return False
+        score_4 = team.calculate_score(2018, 1, 8)
+        if score_4 != 20:
+            return False
+        return True
+    return False
+
+
 class Position(Enum):
     GK = 0
     FB = 1
@@ -172,6 +190,7 @@ def select_players(player_lists, position, count, status=None):
 
     return fetch_players(player_lists, position, status)
 
+
     # Transform player lists
 player_lists = {}
 
@@ -216,14 +235,12 @@ while True:
     # print(team)
     # print(status)
     # print()
-    if team.verify():
-        score = team.calculate_score(2018, 1, 8)
-        if score == 20:
-            print(team)
 
     if counter % 10000000 == 0:
         print(counter)
 
+    if check_score(team):
+        print(team)
 # print(counter)
 
 # while curr_players is not None:
