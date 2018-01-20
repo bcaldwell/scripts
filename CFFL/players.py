@@ -57,6 +57,7 @@ import urllib.request
 import json
 from enum import Enum
 import datetime
+import sys
 
 SALARY_CAP = 55
 
@@ -237,7 +238,10 @@ while True:
     # print()
 
     if counter % 10000000 == 0:
-        print(counter)
+        currentDT = datetime.datetime.now()
+        print (currentDT.strftime("%Y-%m-%d %H:%M:%S    "),
+               file=sys.stderr, end='')
+        print(counter, file=sys.stderr)
 
     if check_score(team):
         print(team)
