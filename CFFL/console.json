@@ -1,0 +1,323 @@
+{
+    "MF": {
+        "LIV": {
+            "M Salah": 5,
+            "S Mane": 5.5
+        },
+        "MC": {
+            "R Sterling": 5.2,
+            "K De Bruyne": 6,
+            "L Sane": 5.2,
+            "D Silva": 5.2
+        },
+        "LEI": {
+            "R Mahrez": 4.4
+        },
+        "TOT": {
+            "D Alli": 7,
+            "C Eriksen": 5.6
+        },
+        "MU": {
+            "A Martial": 5.2,
+            "P Pogba": 5.4,
+            "J Lingard": 4.2
+        },
+        "ARS": {
+            "A Ramsey": 4.8
+        },
+        "CHE": {
+            "E Hazard": 6.8,
+            "Willian": 5
+        },
+        "WH": {
+            "M Arnautovic": 4.3,
+            "M Lanzini": 3.9
+        },
+        "WAT": {
+            "A Doucoure": 3.4,
+            "B Watson": 3.2
+        },
+        "STO": {
+            "X Shaqiri": 4.2
+        },
+        "BHA": {
+            "P Gross": 3.6
+        },
+        "WBA": {
+            "C Yacob": 3.2
+        }
+    },
+    "ST": {
+        "TOT": {
+            "H Kane": 9,
+            "H Son": 7.4
+        },
+        "MC": {
+            "S Aguero": 8,
+            "G Jesus": 8
+        },
+        "LIV": {
+            "R Firmino": 7.4
+        },
+        "MU": {
+            "R Lukaku": 8.4,
+            "M Rashford": 7.4
+        },
+        "CHE": {
+            "A Morata": 8
+        },
+        "EVE": {
+            "W Rooney": 7,
+            "D Calvert-lewin": 5.5
+        },
+        "ARS": {
+            "A Lacazette": 7.8,
+            "A Sanchez": 8.6
+        },
+        "LEI": {
+            "J Vardy": 7.2,
+            "S Okazaki": 5.7
+        },
+        "WAT": {
+            "Richarlison": 5.8
+        }
+    },
+    "FB": {
+        "CHE": {
+            "M Alonso": 4.6,
+            "V Moses": 4.4,
+            "D Zappacosta": 4.5
+        },
+        "MU": {
+            "A Valencia": 4.1,
+            "L Shaw": 3.9,
+            "D Blind": 4.1,
+            "M Darmian": 4
+        },
+        "MC": {
+            "K Walker": 4.6,
+            "Danilo": 4.4,
+            "B Mendy": 4.4
+        },
+        "TOT": {
+            "B Davies": 4.1,
+            "K Trippier": 4.2,
+            "S Aurier": 4.3,
+            "K Walker-peters": 3.9,
+            "D Rose": 4.5
+        },
+        "BUR": {
+            "S Ward": 3.4,
+            "M Lowton": 3.4,
+            "P Bardsley": 3.4,
+            "C Taylor": 3.3
+        },
+        "ARS": {
+            "S Kolasinac": 3.9,
+            "N Monreal": 4.1,
+            "H Bellerin": 4.1,
+            "A Maitland-niles": 3.9
+        },
+        "BHA": {
+            "B Saltor": 3.2,
+            "M Suttner": 3.3,
+            "G Bong": 3.2,
+            "L Rosenior": 3.2,
+            "E Schelotto": 3.2
+        },
+        "WBA": {
+            "C Dawson": 3.7,
+            "K Gibbs": 4,
+            "A Nyom": 3.6
+        },
+        "LIV": {
+            "J Gomez": 3.9,
+            "A Robertson": 4,
+            "T A-arnold": 3.8,
+            "A Moreno": 4
+        },
+        "LEI": {
+            "C Fuchs": 3.6,
+            "B Chilwell": 3.4
+        },
+        "WH": {
+            "A Cresswell": 3.7,
+            "A Masuaku": 3.5
+        },
+        "BOU": {
+            "C Daniels": 3.8
+        },
+        "EVE": {
+            "M Holgate": 3.9,
+            "C Martina": 3.7,
+            "J Kenny": 3.8
+        },
+        "SWA": {
+            "M Olsson": 3.5,
+            "K Naughton": 3.5
+        },
+        "SOT": {
+            "R Bertrand": 4,
+            "S Mcqueen": 3.8,
+            "C Soares": 4,
+            "J Pied": 3.6
+        },
+        "HUD": {
+            "C Lowe": 3.3,
+            "T Smith": 3.4,
+            "M Cranie": 3.2
+        },
+        "NEW": {
+            "P Dummett": 3.4,
+            "J Gamez": 3.2,
+            "D Yedlin": 3.3
+        },
+        "WAT": {
+            "M Zeegelaar": 3.4,
+            "K Femenia": 3.3
+        }
+    },
+    "CB": {
+        "CHE": {
+            "C Azpilicueta": 4.8,
+            "A Rudiger": 4.5,
+            "A Christensen": 4.6,
+            "G Cahill": 5,
+            "D Luiz": 4.7
+        },
+        "MC": {
+            "N Otamendi": 4.3,
+            "J Stones": 4.3,
+            "V Kompany": 4.3,
+            "E Mangala": 4.1
+        },
+        "MU": {
+            "P Jones": 4.2,
+            "E Bailly": 4.4,
+            "C Smalling": 4.2,
+            "V Lindelof": 4.3,
+            "M Rojo": 4.2
+        },
+        "TOT": {
+            "J Vertonghen": 4.4,
+            "D Sanchez": 4.2,
+            "T Alderweireld": 4.6
+        },
+        "BUR": {
+            "J Tarkowski": 3.3,
+            "B Mee": 3.4,
+            "K Long": 3.3
+        },
+        "ARS": {
+            "S Mustafi": 4.2,
+            "L Koscielny": 4.3
+        },
+        "NEW": {
+            "J Lascelles": 3.4,
+            "C Clark": 3.4
+        },
+        "LEI": {
+            "H Maguire": 3.7,
+            "A Dragovic": 3.6
+        },
+        "LIV": {
+            "R Klavan": 4.1,
+            "D Lovren": 4.3,
+            "J Matip": 4.3
+        },
+        "SOT": {
+            "M Yoshida": 4,
+            "J Stephens": 3.8
+        },
+        "WBA": {
+            "A Hegazi": 3.8,
+            "J Evans": 3.9
+        },
+        "CP": {
+            "J Tomkins": 3.6,
+            "M Kelly": 3.5,
+            "J Riedewald": 3.4,
+            "M Sakho": 3.9
+        },
+        "BHA": {
+            "S Duffy": 3.3,
+            "L Dunk": 3.4,
+            "C Goldson": 3.2
+        },
+        "EVE": {
+            "A Williams": 4.2
+        },
+        "SWA": {
+            "M Van Der Hoorn": 3.4,
+            "A Mawson": 3.5
+        },
+        "WH": {
+            "J Collins": 3.8,
+            "J Fonte": 3.9
+        },
+        "WAT": {
+            "M Britos": 3.4,
+            "M Wague": 3.3,
+            "A Mariappa": 3.2
+        },
+        "HUD": {
+            "C Schindler": 3.4,
+            "M Jorgensen": 3.4
+        },
+        "BOU": {
+            "N Ake": 3.8
+        }
+    },
+    "GK": {
+        "MU": {
+            "D De Gea": 4.1
+        },
+        "CHE": {
+            "T Courtois": 4.4
+        },
+        "MC": {
+            "Ederson": 4.1,
+            "C Bravo": 4.2
+        },
+        "BUR": {
+            "N Pope": 3.3
+        },
+        "TOT": {
+            "H Lloris": 4.3,
+            "P Gazzaniga": 3.9
+        },
+        "ARS": {
+            "P Cech": 4
+        },
+        "BHA": {
+            "M Ryan": 3.3,
+            "N Maenpaa": 3.2
+        },
+        "LIV": {
+            "S Mignolet": 4,
+            "L Karius": 3.9
+        },
+        "WBA": {
+            "B Foster": 3.7
+        },
+        "WH": {
+            "Adrian": 3.6
+        },
+        "LEI": {
+            "K Schmeichel": 3.6
+        },
+        "CP": {
+            "J Speroni": 3.2
+        },
+        "NEW": {
+            "R Elliot": 3.2,
+            "K Darlow": 3.3
+        },
+        "SOT": {
+            "A Mccarthy": 3.5
+        },
+        "HUD": {
+            "J Coleman": 3.2
+        }
+    }
+}
